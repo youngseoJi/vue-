@@ -28,12 +28,27 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "@vue/prettier"
     ],
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off",
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "semi": true,
+          "trailingComma": "none",
+          "bracketSpacing": true,
+          "tabWidth": 2,
+          "printWidth": 80,
+          "arrowParens": "avoid"
+        }
+      ]
+    }
   },
   "browserslist": [
     "> 1%",
