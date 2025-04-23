@@ -8,8 +8,18 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 export default new VueRouter({
+  // 해시 모드 ":  URL에 # 포함, 브라우저에서만 라우팅함. 서버는 경로 변경을 감지하지 않음 (기본값)
+  // history  :history 모드는 해시를 사용하지 않기 때문에 브라우저 주소가 깔끔해지지만,
+  // 새로고침 시 서버가 해당 경로(/login 등)를 실제 리소스 요청으로 인식하게 되므로,
+  // 서버에서 index.html로 리디렉션하도록 설정이 필요하다.
+  mode: 'history',
   //  routes : vue-router에 의해서 제어되는 페이지의 정보를 담고있음
   routes: [
+    {
+      //  redirect : 초기 진입 페이지 설정/ 특정 url에 접근하면 설정한 url로 리다이렉트 시킴
+      path: '/',
+      redirect: '/login',
+    },
     {
       path: '/login', // url
       // 코드 스플리팅: () => import()
@@ -19,6 +29,11 @@ export default new VueRouter({
     {
       path: '/signup',
       component: () => import('@/views/SignupPage.vue'), // 회원가입
+    },
+    // 존재하지 않는 경로에 접근하는 경우 404 페이지로 리다이렉트
+    {
+      path: '*',
+      component: () => import('@/views/NotFoundPage.vue'), // 404 페이지
     },
   ],
 });
