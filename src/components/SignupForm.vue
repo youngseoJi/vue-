@@ -45,6 +45,7 @@ export default {
       const { data } = await registerUser(userData);
       console.log(data.username);
       this.logMessage = `${data.username}님 환영합니다.`;
+      console.log(this.logMessage);
       this.initForm();
     },
     // 초기화 메서드 : 회원가입 후 값

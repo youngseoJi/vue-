@@ -6,13 +6,14 @@ import axios from 'axios';
 
 // API  공통화 작업 설정 : axios.create()
 const instance = axios.create({
-  baseURL: 'http://localhost:3000', // 공통 URL
+  // baseURL: 'http://localhost:3000', // 공통 URL
+  baseURL: process.env.VUE_APP_API_URL, // 공통 URL
 });
 
 // 회원가입
 function registerUser(userData) {
   // const url = 'http://localhost:3000/signup';
   // return axios.post(url, userData);
-  instance.post('/signup', userData);
+  return instance.post('/signup', userData);
 }
 export { registerUser };
