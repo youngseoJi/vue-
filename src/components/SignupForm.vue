@@ -36,11 +36,14 @@ export default {
     async submitForm() {
       console.log('Form submitted!');
       const userData = {
+        // v-model으로 사용자 입력값을 저장함
         //this : 현재 vue 인스턴스의 data 속성에 접근
         username: this.username,
         password: this.password,
         nickname: this.nickname,
       };
+
+      // 인자로 userData 서버로 전송하여 회원가입 요청히여 응답 받기
       // 구조분해 : response에서 data를 추출
       const { data } = await registerUser(userData);
       console.log(data.username);
