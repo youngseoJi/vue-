@@ -3,24 +3,36 @@
   <form @submit.prevent="submitForm">
     <div>
       <label for="username">id: </label>
-      <input id="username" type="text" v-model="username" />
+      <input
+        :class="{ inputLine: !isUserNameValid }"
+        id="username"
+        type="text"
+        v-model="username"
+      />
     </div>
     <div>
       <label for="password">pw: </label>
-      <input id="password" type="text" v-model="password" />
+      <input
+        :class="{ inputLine: !password }"
+        id="password"
+        type="text"
+        v-model="password"
+      />
     </div>
     <div>
       <label for="nickoname">nickoname: </label>
       <input id="nickoname" type="text" v-model="nickname" />
     </div>
-    <button type="submit">회원 가입</button>
+    <button v-bind:disabled="!isUserNameValid || !password" type="submit">
+      회원 가입
+    </button>
     <p>{{ logMessage }}</p>
   </form>
 </template>
 
 <script>
 import { registerUser } from '@/api/index';
-
+import { validateEmail } from '../utils/validation';
 export default {
   data() {
     return {
@@ -31,6 +43,11 @@ export default {
       // log
       logMessage: '',
     };
+  },
+  computed: {
+    isUserNameValid() {
+      return validateEmail(this.username);
+    },
   },
   methods: {
     async submitForm() {
@@ -62,4 +79,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.inputLine {
+  border: 1px solid red;
+  background-color: #f8d7da;
+}
+</style>
