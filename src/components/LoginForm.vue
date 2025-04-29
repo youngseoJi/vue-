@@ -48,6 +48,7 @@ export default {
     },
   },
   methods: {
+    // 로그인 : 서버로 로그인 요청
     async submitForm() {
       try {
         // 비즈니스 로직

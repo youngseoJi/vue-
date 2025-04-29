@@ -1,5 +1,6 @@
 <template>
   <header>
+<<<<<<< HEAD
     <div>
       <router-link to="/" class="logo">
         TIL
@@ -15,6 +16,14 @@
 <script>
 export default {};
 </script>
+=======
+    <router-link to="/login">로그인</router-link>
+    <router-link to="/signup">회원가입</router-link>
+  </header>
+</template>
+
+<script></script>
+>>>>>>> db4cc318002da9694170b4b93e3e94ef895b03b2
 
 <style scoped>
 header {
