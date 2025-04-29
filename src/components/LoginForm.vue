@@ -58,6 +58,8 @@ export default {
         };
         const { data } = await loginUser(userData);
         console.log(data.user.username);
+        // 로그인 성공 시 -> 메인 페이지로 router 이동
+        this.$router.push('/main');
         this.logMessage = `${data.user.username} 님 환영합니다`;
         // this.initForm();
       } catch (error) {
