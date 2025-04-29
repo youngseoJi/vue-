@@ -2,14 +2,16 @@
   <!-- @submit form 제출 후 새로고침막기 -->
   <form @submit.prevent="submitForm">
     <div>
-      <label for="usernaem">id: </label>
-      <input id="usernaem" type="text" v-model="username" />
+      <label for="username">id: </label>
+      <input id="username" type="text" v-model="username" />
     </div>
     <div>
       <label for="password">pw: </label>
       <input id="password" type="text" v-model="password" />
     </div>
-    <button type="submit">로그인</button>
+    <button v-bind:disabled="!isUserNameValid || !password" type="submit">
+      로그인
+    </button>
     <p>{{ logMessage }}</p>
   </form>
 </template>
@@ -26,7 +28,12 @@ export default {
       logMessage: '',
     };
   },
-
+  // 데이터 변화가 있을때 마다 자동으로 반영되게 해주는 속성
+  computed: {
+    isUserNameValid() {
+      return validateEmail(this.username);
+    },
+  },
   methods: {
     // 로그인 : 서버로 로그인 요청
     async submitForm() {
