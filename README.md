@@ -1,3 +1,29 @@
+# vue-til
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
 # Vue.js 학습 노트 애플리케이션
 
 인프런 Vue.js Endgame 강의에서 다루는 애플리케이션 소스 코드입니다.

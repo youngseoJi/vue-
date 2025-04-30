@@ -48,6 +48,7 @@ export default {
     },
   },
   methods: {
+    // 로그인 : 서버로 로그인 요청
     async submitForm() {
       try {
         // 비즈니스 로직
@@ -57,7 +58,9 @@ export default {
         };
         const { data } = await loginUser(userData);
         console.log(data.user.username);
-        this.$store.commit('setUsername', data.user.username);
+        // commit: 값을 store- state에 저장
+        this.$store.commit('setUserName', data.user.username);
+        // 로그인 성공 시 -> 메인 페이지로 router 이동
         this.$router.push('/main');
         // this.logMessage = `${data.user.username} 님 환영합니다`;
         // this.initForm();

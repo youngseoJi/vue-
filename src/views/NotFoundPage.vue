@@ -1,6 +1,10 @@
 <template>
   <div>
+<<<<<<< HEAD
     Page is not found
+=======
+    NotFoundPage
+>>>>>>> main
   </div>
 </template>
 
