@@ -6,17 +6,44 @@
       </router-link>
     </div>
     <div class="navigations">
-      <router-link to="/login">로그인</router-link>
-      <router-link to="/signup">회원가입</router-link>
+      <!-- 로그인 상태에 따라서 header 표시 분기 -->
+      <!-- 1. 로그인 상태-->
+      <template v-if="isUserLogin">
+        <span class="username">{{ $store.state.username }}</span>
+        <a href="javascript:;" @click="logoutUser">Logout</a>
+      </template>
+      <!-- 2. 로그인 아닌 상태 -->
+      <template v-else>
+        <router-link to="/login">로그인</router-link>
+        <router-link to="/signup">회원가입</router-link>
+      </template>
     </div>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  // 값이 변할 때마다 자동으로 업데이트
+  computed: {
+    isUserLogin() {
+      // isLogin: true/false
+      return this.$store.getters.isLogin;
+    },
+  },
+  methods: {
+    logoutUser() {
+      this.$store.commit('clearUserName');
+      this.$router.push('/main');
+    },
+  },
+};
 </script>
 
 <style scoped>
+.username {
+  color: white;
+}
+
 header {
   display: flex;
   justify-content: space-between;

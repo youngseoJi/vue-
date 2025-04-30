@@ -26,9 +26,15 @@ export default new VueRouter({
       // 초기 로딩 시 전체 페이지를 불러오지 않고, 해당 경로 접근 시에만 컴포넌트를 비동기로 로드함
       component: () => import('@/views/LoginPage.vue'), //  로긍인    },
     },
+    // 회원가입
     {
       path: '/signup',
-      component: () => import('@/views/SignupPage.vue'), // 회원가입
+      component: () => import('@/views/SignupPage.vue'),
+    },
+    // 메인 페이지
+    {
+      path: '/main',
+      component: () => import('@/views/MainPage.vue'),
     },
     // 존재하지 않는 경로에 접근하는 경우 404 페이지로 리다이렉트
     {
