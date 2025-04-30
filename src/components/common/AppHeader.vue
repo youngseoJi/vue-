@@ -7,9 +7,9 @@
       </router-link>
     </div>
     <div class="navigations">
-        <!-- 로그인 상태에 따라서 header 표시 분기 -->
+      <!-- 로그인 상태에 따라서 header 표시 분기 -->
       <!-- 1. 로그인 상태-->
-       <template v-if="isUserLogin">
+      <template v-if="isUserLogin">
         <a href="javascript:;" @click="logoutUser" class="logout-button">
           Logout
         </a>
@@ -17,7 +17,7 @@
       <!-- 2. 로그인 아닌 상태 -->
       <template v-else>
         <router-link to="/login">로그인</router-link>
-          <router-link to="/signup">회원가입</router-link>
+        <router-link to="/signup">회원가입</router-link>
       </template>
     </div>
   </header>
@@ -34,8 +34,8 @@ export default {
   },
   methods: {
     logoutUser() {
-      this.$store.commit('clearUserName');
-      this.$router.push('/main');
+      this.$store.commit('clearUsername');
+      this.$router.push('/login');
     },
   },
 };
