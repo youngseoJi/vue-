@@ -18,9 +18,14 @@ export default new Vuex.Store({
   // mutations : state 를 변경하는 메소드
   // 함수명(state, payload(전달받은 값){}
   mutations: {
+    // 헤더에 필요":  로그인 성공 시 사용자명 저장 or  초기화 하도록 처리
     // 사용자명
     setUserName(state, username) {
       state.username = username;
+    },
+    // 사용자명 초기화
+    clearUserName(state) {
+      state.username = '';
     },
   },
 });
