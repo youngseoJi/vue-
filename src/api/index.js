@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { setInterCeptors } from './common/interceptors';
-
+// axios 초기화 함수
 function createInstance() {
   const instance = axios.create({
     baseURL: process.env.VUE_APP_API_URL, // 모든 요청의 기본 URL로 환경변수 값 사용
@@ -17,13 +17,20 @@ function createInstance() {
 
 const instance = createInstance();
 
+// 회원가입 API
 function registerUser(userData) {
   // axios.post('localhost:8080/signup', userData);
   return instance.post('signup', userData);
 }
 
+// 로그인 API
 function loginUser(userData) {
   return instance.post('login', userData);
 }
 
-export { registerUser, loginUser };
+// 학습노트 데이터 조회 API
+function fetchNoteDatas() {
+  return instance.get('Posts');
+}
+
+export { registerUser, loginUser, fetchNoteDatas };
