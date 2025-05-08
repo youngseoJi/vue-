@@ -4,35 +4,24 @@
       <h1 class="page-header">Today I Learned</h1>
       <LoadingSpinner v-if="isLoading"></LoadingSpinner>
       <ul v-else>
-        <postListItem
+        <PostListItem
           v-for="postItem in postItems"
           :key="postItem._id"
           :postItem="postItem"
-        />
-        <!-- <li v-for="postItem in postItems" :key="postItem._id">
-          <div class="post-title">
-            {{ postItem.title }}
-          </div>
-          <div class="post-contents">
-            {{ postItem.contents }}
-          </div>
-          <div class="post-time">
-            {{ postItem.createdAt }}
-          </div>
-        </li> -->
+        ></PostListItem>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import postListItem from '@/components/posts/postListItem.vue';
+import PostListItem from '@/components/posts/PostListItem.vue';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
-import { fetchNoteDatas } from '@/api/index';
+import { fetchPosts } from '@/api/index';
 
 export default {
   components: {
-    postListItem,
+    PostListItem,
     LoadingSpinner,
   },
   data() {
@@ -42,16 +31,15 @@ export default {
     };
   },
   methods: {
-    async fetchNoteDatas() {
+    async fetchData() {
       this.isLoading = true;
-      const { data } = await fetchNoteDatas();
+      const { data } = await fetchPosts();
       this.isLoading = false;
       this.postItems = data.posts;
     },
   },
-  // 컴포넌트 생성 시점에 실행
   created() {
-    this.fetchNoteDatas();
+    this.fetchData();
   },
 };
 </script>
