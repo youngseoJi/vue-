@@ -55,14 +55,8 @@ export default {
           password: this.password,
         };
         // await 을 해야 비동기 함수인 로그인 함수가 순차적으로 실행된다.
-        await this.$store.dispatch('Login', userData);
-        // const { data } = await loginUser(userData);
-        // console.log(data.token);
-        // this.$store.commit('setToken', data.token);
-        // this.$store.commit('setUsername', data.user.username);
-        // // 쿠키에 저장 : 토큰과 유저네임 저장하여 새로고침시 유지되도록
-        // saveAuthToCookie(data.token);
-        // saveUserToCookie(data.user.username);
+        await this.$store.dispatch('LOGIN', userData);
+
         this.$router.push('/main');
       } catch (error) {
         // 에러 핸들링할 코드
