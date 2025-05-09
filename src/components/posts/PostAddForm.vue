@@ -19,10 +19,12 @@
             contents must be than 200 (200자 이하)
           </p>
         </div>
+
+        <!-- :class="`btn ${!isTitleValid || !isContentsValid ? 'disabled' : ''}`" -->
         <button
           type="submit"
-          :class="['btn', { disabled: !isTitleValid || !isContentsValid }]"
           :disabled="!isTitleValid || !isContentsValid"
+          :class="['btn', { disabled: !isTitleValid || !isContentsValid }]"
         >
           Create
         </button>
