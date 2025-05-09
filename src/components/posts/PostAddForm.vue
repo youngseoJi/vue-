@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { createPost } from '@/api/index';
+
 export default {
   data() {
     return {
@@ -28,8 +30,15 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       console.log('제출');
+      const postData = {
+        title: this.title,
+        contents: this.contents,
+      };
+      const { data } = await createPost(postData);
+      console.log(data);
+      this.$router.push('/main');
     },
   },
 };
