@@ -30,8 +30,11 @@ export default {
   },
   methods: {
     async deletePostItem() {
-      await deletePost(this.postItem._id);
-      console.log('deleted');
+      if (confirm('정말 삭제하시겠습니까?')) {
+        await deletePost(this.postItem._id);
+        // .$emit 헤딩 캄포넌트에서 -> 부모 컴포넌트에 refresh 이벤트를 발생시켜서 데이터를 새로고침 시킨다.
+        this.$emit('refresh');
+      }
     },
   },
 };
