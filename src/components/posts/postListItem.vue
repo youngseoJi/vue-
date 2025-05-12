@@ -9,7 +9,11 @@
     <div class="post-time">
       {{ postItem.createdAt }}
       <ion-icon class="icon ion-md-create" name="create-outline"></ion-icon>
-      <ion-icon class="icon" name="trash-outline"></ion-icon>
+      <ion-icon
+        class="icon"
+        name="trash-outline"
+        @click="deletePostItem"
+      ></ion-icon>
     </div>
   </li>
 </template>
@@ -25,12 +29,9 @@ export default {
     },
   },
   methods: {
-    async deleteItem() {
-      if (confirm('You want to delete it?')) {
-        await deletePost(this.postItem._id);
-        this.$emit('refresh');
-      }
-      // console.log('deleted');
+    async deletePostItem() {
+      await deletePost(this.postItem._id);
+      console.log('deleted');
     },
   },
 };
