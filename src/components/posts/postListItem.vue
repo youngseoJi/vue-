@@ -8,16 +8,29 @@
     </div>
     <div class="post-time">
       {{ postItem.createdAt }}
+      <ion-icon class="icon ion-md-create" name="create-outline"></ion-icon>
+      <ion-icon class="icon" name="trash-outline"></ion-icon>
     </div>
   </li>
 </template>
 
 <script>
+import { deletePost } from '@/api/posts';
+
 export default {
   props: {
     postItem: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    async deleteItem() {
+      if (confirm('You want to delete it?')) {
+        await deletePost(this.postItem._id);
+        this.$emit('refresh');
+      }
+      // console.log('deleted');
     },
   },
 };
