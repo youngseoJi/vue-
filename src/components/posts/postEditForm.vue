@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import { fetchPost } from '@/api/posts';
+import { fetchPost, updatePost } from '@/api/posts';
 
 export default {
   data() {
@@ -55,14 +55,30 @@ export default {
       return this.title.length <= 20;
     },
   },
-  methods: { async submitForm() {} },
-  async created() {
+  methods: {
+    async submitForm() {
+      const id = this.$route.params.id;
+      try {
+        await updatePost(id, {
+          title: this.title,
+          contents: this.contents,
+        });
+        this.$router.push('/main');
+      } catch (err) {
+        this.logMessage = 'err';
+      }
+    },
     // 학습 노트 데이터 조회
-    const id = this.$route.params.id;
-    const { data } = await fetchPost(id);
-    // console.log(data);
-    this.title = data.title;
-    this.contents = data.contents;
+    async fetchPostData() {
+      const id = this.$route.params.id;
+      const { data } = await fetchPost(id);
+      this.title = data.title;
+      this.contents = data.contents;
+    },
+  },
+  created() {
+    // 학습 노트 데이터 조회
+    this.fetchPostData();
   },
 };
 </script>
