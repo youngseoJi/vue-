@@ -36,16 +36,20 @@ export default new VueRouter({
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
-    // 메인 페이지
+    // 학습 노트 추가 페이지
     {
       path: '/addPost',
       component: () => import('@/views/PostAddPage.vue'),
     },
-    // 존재하지 않는 경로에 접근하는 경우 404 페이지로 리다이렉트
+    {
+      path: '/post/:id',
+      component: () => import('@/views/PostEditPage.vue'),
+    },
     {
       path: '/add',
       component: () => import('@/views/PostAddPage.vue'),
     },
+    // 존재하지 않는 경로에 접근하는 경우 404 페이지로 리다이렉트
     {
       path: '*',
       component: () => import('@/views/NotFoundPage.vue'), // 404 페이지
