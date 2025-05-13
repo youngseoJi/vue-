@@ -4,7 +4,7 @@
 ></template>
 
 <script>
-import PostEditForm from '@/components/posts/postEditForm.vue';
+import PostEditForm from '~/src/components/posts/PostEditForm';
 
 export default {
   components: {
