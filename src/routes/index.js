@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store/index';
 // import LoginPage from '@/views/LoginPage.vue'; // 로그인 페이지
 // import SignupPage from '@/views/SignupPage.vue'; // 회원가입 페이지
 
@@ -69,11 +70,15 @@ const router = new VueRouter({
 //  라우터 네비게이션 가드
 //  beforeEach : 라우터가 변경되기 전에 실행되는 메소드
 // (to: 이동할 페이지 경로, from: 현재 페이지 경로, next: 페이지 이동할때 호출하는 메소드)
+
 router.beforeEach((to, from, next) => {
-  if (to.meta.auth == true) {
+  // 인증이 필요한 페이지일때 && 로그인하지 않은 상태일때
+  if (to.meta.auth == true && !store.getters.isLogin) {
     console.log('인증이 필요한 페이지입니다.');
+    next('/login'); // 로그인 페이지로 리다이렉트
+    return; // 다음 라우터 가드로 넘어가지 않도록 return
   }
-  next();
+  next(); // 이동할 페이지로 정상 이동
 });
 
 export default router;

@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      <router-link to="/" class="logo">
+      <router-link :to="logoLink" class="logo">
         TIL
         <span v-if="isUserLogin">by {{ $store.state.username }}</span>
       </router-link>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { deleteCookie } from '@/utils/cookies';
 export default {
   // 값이 변할 때마다 자동으로 업데이트
   computed: {
@@ -31,10 +32,19 @@ export default {
       // isLogin: true/false
       return this.$store.getters.isLogin;
     },
+    logoLink() {
+      // 로그인 상태에 따라서 헤더 로고 링크 변경
+      return this.$store.getters.isLogin ? '/main' : '/login';
+    },
   },
   methods: {
     logoutUser() {
-      this.$store.commit('clearUsername');
+      // 로그아웃 시, store에 저장된 username과 token을 삭제
+      this.$store.commit('clearUserName');
+      this.$store.commit('clearToken');
+      // 쿠키에 저장된 username과 token을 삭제
+      deleteCookie('til_auth');
+      deleteCookie('til_user');
       this.$router.push('/login');
     },
   },

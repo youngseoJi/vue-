@@ -39,6 +39,10 @@ export default new Vuex.Store({
     clearUserName(state) {
       state.username = '';
     },
+    // 토큰 초기화
+    clearToken(state) {
+      state.token = '';
+    },
   },
   //actions 속성을 이용한 로그인 기능 구현과 비동기 처리
   actions: {
@@ -46,7 +50,7 @@ export default new Vuex.Store({
       const { data } = await loginUser(userData);
       console.log(data.token);
       commit('setToken', data.token);
-      commit('setUsername', data.user.username);
+      commit('setUsername', data.user.setUserName);
       // 쿠키에 저장 : 토큰과 유저네임 저장하여 새로고침시 유지되도록
       saveAuthToCookie(data.token);
       saveUserToCookie(data.user.username);
