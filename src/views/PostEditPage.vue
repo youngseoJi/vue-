@@ -4,7 +4,7 @@
 ></template>
 
 <script>
-import PostEditForm from '~/src/components/posts/PostEditForm';
+import PostEditForm from '@/components/posts/PostEditForm';
 
 export default {
   components: {
