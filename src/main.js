@@ -2,6 +2,10 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from '@/routes/index';
 import store from '@/store/index'; // Vuex 스토어
+// import { formatData } from '@/utils/filters';
+
+// 전역 필터 등록 vue2 방식
+// Vue.filter('formatData', formatData); // 날짜 포맷 필터 등록
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true; // Vue Devtools 작동을 위한 설정

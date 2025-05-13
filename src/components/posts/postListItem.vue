@@ -7,7 +7,8 @@
       {{ postItem.contents }}
     </div>
     <div class="post-time">
-      {{ postItem.createdAt }}
+      <!-- {{ postItem.createdAt | formatData }} -->
+      {{ formattedDate }}
       <ion-icon
         class="icon ion-md-create"
         name="create-outline"
@@ -24,12 +25,26 @@
 
 <script>
 import { deletePost } from '@/api/posts';
+import { formatData } from '@/utils/filters';
 
 export default {
   props: {
     postItem: {
       type: Object,
       required: true,
+    },
+  },
+  // vue2 필터방법 vue3는 computed로 사용
+  // 지역 필터
+  // filters: {
+  //   formatData(value) {
+  //     return new Date(value);
+  //   },
+  // },
+  computed: {
+    // postItem.createdAt을 유틸로 변환
+    formattedDate() {
+      return formatData(this.postItem.createdAt);
     },
   },
   methods: {
