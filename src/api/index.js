@@ -8,6 +8,7 @@ function createInstance() {
 
 // 인증 토큰을 포함한 인스턴스
 // url : posts 전용 인스턴스 생성하기 위한 인자
+
 // 액시오스 초기화 함수
 function createInstanceWithAuth(url) {
   const instance = axios.create({
