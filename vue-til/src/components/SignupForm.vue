@@ -5,6 +5,11 @@
         <div>
           <label for="username">id: </label>
           <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUserNameValid && username">
+              이메일 주소를 입력하세요.
+            </span>
+          </p>
         </div>
         <div>
           <label for="password">pw: </label>
@@ -14,7 +19,14 @@
           <label for="nickname">nickname: </label>
           <input id="nickname" type="text" v-model="nickname" />
         </div>
-        <button type="submit" class="btn">회원 가입</button>
+        <button
+          :disabled="!isUserNameValid || !password || !nickname"
+          type="submit"
+          class="btn"
+          :class="!isUserNameValid || !password || !nickname ? 'disabled' : ''"
+        >
+          회원 가입
+        </button>
       </form>
       <p class="log">{{ logMessage }}</p>
     </div>
