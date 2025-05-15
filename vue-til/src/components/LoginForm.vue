@@ -6,8 +6,8 @@
           <label for="username">id:</label>
           <input id="username" type="text" v-model="username" />
           <p class="validation-text">
-            <span class="warning" v-if="!isUsernameValid && username">
-              Please enter an email address
+            <span class="warning" v-if="!isUserNameValid && username">
+              이메일 주소를 입력하세요.
             </span>
           </p>
         </div>
@@ -16,10 +16,10 @@
           <input id="password" type="text" v-model="password" />
         </div>
         <button
-          :disabled="!isUsernameValid || !password"
+          :disabled="!isUserNameValid || !password"
           type="submit"
           class="btn"
-          :class="!isUsernameValid || !password ? 'disabled' : ''"
+          :class="!isUserNameValid || !password ? 'disabled' : ''"
         >
           <!--:class="['btn', { disabled: !isUsernameValid || !password }]" -->
           로그인
@@ -44,7 +44,7 @@ export default {
     };
   },
   computed: {
-    isUsernameValid() {
+    isUserNameValid() {
       return validateEmail(this.username);
     },
   },

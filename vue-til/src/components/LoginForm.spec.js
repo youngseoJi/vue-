@@ -29,7 +29,7 @@ describe('LoginForm.vue', () => {
     expect(warningText.exists()).toBeTruthy();
   });
 
-  test('ID와 PASSWORD가 입력되지 않으면 로그인 버튼 비활성화', () => {
+  test('ID와 PASSWORD가 입력되지 않으면 로그인 버튼 비활성화 처리하기', () => {
     const wrapper = shallowMount(LoginForm, {
       data() {
         return {
