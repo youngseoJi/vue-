@@ -1,7 +1,7 @@
-<!-- 글 발행 폼 -->
+<!-- 글 수정 폼 -->
 <template>
   <div class="contents">
-    <h1 class="page-header">Create Post</h1>
+    <h1 class="page-header">Edit Post</h1>
     <div class="form-wrapper">
       <!-- Form -->
       <form class="form" @submit.prevent="submitForm">
@@ -35,9 +35,8 @@
     </div>
   </div>
 </template>
-
 <script>
-import { createPost } from '@/api/posts';
+import { fetchPost, updatePost } from '@/api/posts';
 
 export default {
   data() {
@@ -58,18 +57,28 @@ export default {
   },
   methods: {
     async submitForm() {
+      const id = this.$route.params.id;
       try {
-        const postData = {
+        await updatePost(id, {
           title: this.title,
           contents: this.contents,
-        };
-        await createPost(postData); // console.log(data);
+        });
         this.$router.push('/main');
       } catch (err) {
-        // console.log(err.response.data.message);
-        this.logMessage = err.response.data.message;
+        this.logMessage = 'err';
       }
     },
+    // 학습 노트 데이터 조회
+    async fetchPostData() {
+      const id = this.$route.params.id;
+      const { data } = await fetchPost(id);
+      this.title = data.title;
+      this.contents = data.contents;
+    },
+  },
+  created() {
+    // 학습 노트 데이터 조회
+    this.fetchPostData();
   },
 };
 </script>
