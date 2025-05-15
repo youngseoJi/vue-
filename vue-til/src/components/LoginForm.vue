@@ -19,7 +19,9 @@
           :disabled="!isUsernameValid || !password"
           type="submit"
           class="btn"
+          :class="!isUsernameValid || !password ? 'disabled' : ''"
         >
+          <!--:class="['btn', { disabled: !isUsernameValid || !password }]" -->
           로그인
         </button>
       </form>
